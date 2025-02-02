@@ -22,7 +22,7 @@ public class UserController : ControllerBase
     {
         var user = await _context.Users.FindAsync(id);
         if (user == null)
-            return NotFound(); 
+            return NotFound();
 
         //200 OK 
         return user;
@@ -49,11 +49,16 @@ public class UserController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<User>> PostUser(User user)
     {
+        if (user.Gender == GenderType.Male)
+            user.ImageUrl = "defaultMan.png";
+        else
+            user.ImageUrl = "defaultWoman.png";
+
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
 
         //201 
-        return CreatedAtAction(nameof(GetUserById), new {id=user.Id}, user);
+        return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
     }
 
     [HttpPut("{id}")]
@@ -63,14 +68,17 @@ public class UserController : ControllerBase
         if (user == null)
             //404
             return NotFound();
-        var userUsername=await _context.Users.FirstOrDefaultAsync(p=>p.Username==updateUserDto.Username);
-        if(userUsername != null)
-            return BadRequest($"User with username {updateUserDto.Username} alrealdy exist, try another!"); 
+        var userUsername = await _context.Users.FirstOrDefaultAsync(p => p.Username == updateUserDto.Username);
+        if (userUsername != null)
+            return BadRequest($"User with username {updateUserDto.Username} alrealdy exist, try another!");
+        if (updateUserDto.ImageUrl == "defaultMan.png"||updateUserDto.ImageUrl == "defaultWoman.png")
+            user.ImageUrl = user.ImageUrl;
+        else
+            user.ImageUrl = updateUserDto.ImageUrl;
 
-        user.Username=updateUserDto.Username;
-        user.Therapy=updateUserDto.Therapy;
-        user.Workout=updateUserDto.Workout;
-        user.ImageUrl=updateUserDto.ImageUrl;
+        user.Username = updateUserDto.Username;
+        user.Therapy = updateUserDto.Therapy;
+        user.Workout = updateUserDto.Workout;
 
         _context.Users.Update(user);
         await _context.SaveChangesAsync();
@@ -82,7 +90,7 @@ public class UserController : ControllerBase
     public async Task<IActionResult> DeleteUser(int id)
     {
         var user = await _context.Users.FindAsync(id);
-        if (user==null)
+        if (user == null)
         {
             //404 
             return NotFound();
@@ -90,7 +98,7 @@ public class UserController : ControllerBase
         _context.Users.Remove(user);
         await _context.SaveChangesAsync();
 
-        return NoContent(); 
+        return NoContent();
     }
 
 }

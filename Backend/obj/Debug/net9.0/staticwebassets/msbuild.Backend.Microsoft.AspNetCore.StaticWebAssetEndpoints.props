@@ -1,0 +1,28 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/Backend/assets/defaultMan.lnuyhsd3mj.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\defaultMan.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lnuyhsd3mj"},{"Name":"integrity","Value":"sha256-T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI\u002B1O266hEJ8="},{"Name":"label","Value":"_content/Backend/assets/defaultMan.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"27252"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI\u002B1O266hEJ8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 26 Jan 2025 02:33:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Backend/assets/defaultMan.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\defaultMan.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI\u002B1O266hEJ8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"27252"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI\u002B1O266hEJ8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 26 Jan 2025 02:33:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Backend/assets/defaultWoman.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\defaultWoman.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"23620"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 26 Jan 2025 02:33:29 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/Backend/assets/defaultWoman.wni6onktbg.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\assets\defaultWoman.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"wni6onktbg"},{"Name":"integrity","Value":"sha256-BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo="},{"Name":"label","Value":"_content/Backend/assets/defaultWoman.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"23620"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo=\u0022"},{"Name":"Last-Modified","Value":"Sun, 26 Jan 2025 02:33:29 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

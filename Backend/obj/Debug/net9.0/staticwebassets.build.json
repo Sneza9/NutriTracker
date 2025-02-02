@@ -1,0 +1,228 @@
+{
+  "Version": 1,
+  "Hash": "k6qcEbpv7qZQpiwKV8Bg7RPgICh5pbNu0X8cL2De7eo=",
+  "Source": "Backend",
+  "BasePath": "_content/Backend",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Backend\\wwwroot",
+      "Source": "Backend",
+      "ContentRoot": "C:\\NutriTracker\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\NutriTracker\\Backend\\wwwroot\\assets\\defaultMan.png",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\NutriTracker\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "assets/defaultMan#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lnuyhsd3mj",
+      "Integrity": "T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI+1O266hEJ8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\defaultMan.png"
+    },
+    {
+      "Identity": "C:\\NutriTracker\\Backend\\wwwroot\\assets\\defaultWoman.png",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\NutriTracker\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "assets/defaultWoman#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "wni6onktbg",
+      "Integrity": "BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\defaultWoman.png"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "assets/defaultMan.lnuyhsd3mj.png",
+      "AssetFile": "C:\\NutriTracker\\Backend\\wwwroot\\assets\\defaultMan.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "27252"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI+1O266hEJ8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 26 Jan 2025 02:33:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lnuyhsd3mj"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/defaultMan.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI+1O266hEJ8="
+        }
+      ]
+    },
+    {
+      "Route": "assets/defaultMan.png",
+      "AssetFile": "C:\\NutriTracker\\Backend\\wwwroot\\assets\\defaultMan.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "27252"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI+1O266hEJ8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 26 Jan 2025 02:33:39 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-T//4tlh2C0mHGTuYOqc6CIoDg2QtdSKLI+1O266hEJ8="
+        }
+      ]
+    },
+    {
+      "Route": "assets/defaultWoman.png",
+      "AssetFile": "C:\\NutriTracker\\Backend\\wwwroot\\assets\\defaultWoman.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23620"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 26 Jan 2025 02:33:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo="
+        }
+      ]
+    },
+    {
+      "Route": "assets/defaultWoman.wni6onktbg.png",
+      "AssetFile": "C:\\NutriTracker\\Backend\\wwwroot\\assets\\defaultWoman.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23620"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sun, 26 Jan 2025 02:33:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "wni6onktbg"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/defaultWoman.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-BAiKMtIVBrfYMxHkcK5wANhctz5ZbOstaFxiRvtC7mo="
+        }
+      ]
+    }
+  ]
+}

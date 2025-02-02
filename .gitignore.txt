@@ -1,6 +1,6 @@
 # .NET Web API ignore
-bin/
-obj/
+**/bin/
+**/obj/
 *.user
 *.suo
 *.psess
