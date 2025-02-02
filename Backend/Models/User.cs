@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
     public class User
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         [MinLength(1)]
@@ -33,9 +35,10 @@ namespace Backend.Models
         public bool Therapy { get; set; } = false;
         [Required]
         public WorkoutType Workout { get; set; } = WorkoutType.Without;
+        public string ImageUrl { get; set; } = string.Empty;
         [Required]
         public bool Premium { get; set; } = false;
-    } 
+    }
 
     public enum GenderType
     {
@@ -46,7 +49,7 @@ namespace Backend.Models
     {
         Without,
         Low,
-        Medium, 
-        High 
+        Medium,
+        High
     }
 }

@@ -79,7 +79,7 @@ namespace Backend.Migrations
                     b.ToTable("FAQs");
                 });
 
-            modelBuilder.Entity("Backend.Models.Ingredient", b =>
+            modelBuilder.Entity("Backend.Models.IngredientNutrition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,25 +87,29 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Carbohydrate")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Carbohydrate")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Fat")
+                    b.Property<decimal>("Fat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("FdcId")
                         .HasColumnType("int");
 
                     b.Property<string>("IngredientName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
-                    b.Property<int>("KCal")
-                        .HasColumnType("int");
+                    b.Property<decimal>("KCal")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Protein")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Protein")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients");
+                    b.ToTable("IngredientsNutritions");
                 });
 
             modelBuilder.Entity("Backend.Models.Medication", b =>
@@ -166,6 +170,10 @@ namespace Backend.Migrations
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
