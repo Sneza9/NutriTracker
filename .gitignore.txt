@@ -1,0 +1,54 @@
+# .NET Web API ignore
+bin/
+obj/
+*.user
+*.suo
+*.psess
+*.vsp
+*.vspx
+*.vspscc
+*.vssscc
+*.dbmdl
+*.pdb
+*.log
+*.ldf
+*.mdf
+*.coverage
+*.testsettings
+*.vs/
+.vscode/
+appsettings*.json
+secrets.json
+.env
+
+# NuGet packages
+packages/
+!packages/repositories.config
+
+# Resharper & Rider files
+*.DotSettings.user
+.idea/
+
+# Angular ignore
+node_modules/
+dist/
+tmp/
+out-tsc/
+.angular/
+.angular-cache/
+coverage/
+src/environments/environment*.ts
+
+# Logs and debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# IDE specific (WebStorm, JetBrains, VSCode)
+.vscode/
+*.code-workspace
+*.sublime-workspace
+.DS_Store
+Thumbs.db
