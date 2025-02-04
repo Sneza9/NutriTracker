@@ -43,20 +43,34 @@ namespace Backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Ingredients",
+                name: "IngredientNutritionsApi",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IngredientName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    KCal = table.Column<int>(type: "int", nullable: false),
-                    Fat = table.Column<int>(type: "int", nullable: false),
-                    Carbohydrates = table.Column<int>(type: "int", nullable: false),
-                    Protein = table.Column<int>(type: "int", nullable: false)
+                    FdcId = table.Column<int>(type: "int", nullable: false),
+                    IngredientName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    KCal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Fat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Carbohydrate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Protein = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingredients", x => x.Id);
+                    table.PrimaryKey("PK_IngredientNutritionsApi", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "IngredientType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IngredientTypeName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IngredientType", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,12 +115,44 @@ namespace Backend.Migrations
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Therapy = table.Column<bool>(type: "bit", nullable: false),
                     Workout = table.Column<int>(type: "int", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Premium = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "IngredientNutritions",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IngredientTypeId = table.Column<int>(type: "int", nullable: false),
+                    IngredientName = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    KCal = table.Column<int>(type: "int", nullable: false),
+                    Fat = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Carbohydrate = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    TotalSugar = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Protein = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    GI = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IngredientNutritions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_IngredientNutritions_IngredientType_IngredientTypeId",
+                        column: x => x.IngredientTypeId,
+                        principalTable: "IngredientType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_IngredientNutritions_IngredientTypeId",
+                table: "IngredientNutritions",
+                column: "IngredientTypeId");
         }
 
         /// <inheritdoc />
@@ -119,7 +165,10 @@ namespace Backend.Migrations
                 name: "FAQs");
 
             migrationBuilder.DropTable(
-                name: "Ingredients");
+                name: "IngredientNutritions");
+
+            migrationBuilder.DropTable(
+                name: "IngredientNutritionsApi");
 
             migrationBuilder.DropTable(
                 name: "Medications");
@@ -129,6 +178,9 @@ namespace Backend.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "IngredientType");
         }
     }
 }

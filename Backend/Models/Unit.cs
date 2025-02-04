@@ -17,10 +17,10 @@ namespace Backend.Models
 
     public enum UnitTypes
     {
-        Teaspoon = 5,
-        Tablespoon = 15,
-        Gram = 1,
-        Peace = 1
+        Teaspoon,
+        Tablespoon,
+        Gram,
+        Peace
     }
 
 }

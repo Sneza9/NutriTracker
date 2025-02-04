@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250202045010_V2")]
-    partial class V2
+    [Migration("20250204214148_V1")]
+    partial class V1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -82,7 +82,7 @@ namespace Backend.Migrations
                     b.ToTable("FAQs");
                 });
 
-            modelBuilder.Entity("Backend.Models.Ingredient", b =>
+            modelBuilder.Entity("Backend.Models.IngredientNutrition", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -90,25 +90,88 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Carbohydrate")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Carbohydrate")
+                        .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Fat")
+                    b.Property<decimal>("Fat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("GI")
                         .HasColumnType("int");
 
                     b.Property<string>("IngredientName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("IngredientTypeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("KCal")
                         .HasColumnType("int");
 
-                    b.Property<int>("Protein")
-                        .HasColumnType("int");
+                    b.Property<decimal>("Protein")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalSugar")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Ingredients");
+                    b.HasIndex("IngredientTypeId");
+
+                    b.ToTable("IngredientNutritions");
+                });
+
+            modelBuilder.Entity("Backend.Models.IngredientNutritionApi", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Carbohydrate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Fat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("FdcId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("IngredientName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal>("KCal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Protein")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IngredientNutritionsApi");
+                });
+
+            modelBuilder.Entity("Backend.Models.IngredientType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("IngredientTypeName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("IngredientType");
                 });
 
             modelBuilder.Entity("Backend.Models.Medication", b =>
@@ -170,6 +233,10 @@ namespace Backend.Migrations
                     b.Property<int>("Gender")
                         .HasColumnType("int");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -196,6 +263,22 @@ namespace Backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Backend.Models.IngredientNutrition", b =>
+                {
+                    b.HasOne("Backend.Models.IngredientType", "IngredientType")
+                        .WithMany("ingredientNutritions")
+                        .HasForeignKey("IngredientTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("IngredientType");
+                });
+
+            modelBuilder.Entity("Backend.Models.IngredientType", b =>
+                {
+                    b.Navigation("ingredientNutritions");
                 });
 #pragma warning restore 612, 618
         }

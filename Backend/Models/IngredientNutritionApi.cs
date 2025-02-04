@@ -3,29 +3,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Backend.Models
 {
-    public class IngredientNutrition
+    //Zavisice od apija sa kog preuzimam namirnice 
+    public class IngredientNutritionApi
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        public int IngredientTypeId { get; set; }
+        public int FdcId { get; set; } //Unique 
         [Required]
         [MaxLength(255)]
         public string IngredientName { get; set; } = string.Empty;
         [Required]
-        public int KCal { get; set; } 
+        public decimal KCal { get; set; } = decimal.Zero;
         [Required]
         public decimal Fat { get; set; } = decimal.Zero;
         [Required]
         public decimal Carbohydrate { get; set; } = decimal.Zero;
         [Required]
-        public decimal TotalSugar { get; set; } = decimal.Zero;
-        [Required]
         public decimal Protein { get; set; } = decimal.Zero;
-        [Required]
-        public int GI { get; set; } 
-        [ForeignKey(nameof(IngredientTypeId))]
-        public IngredientType IngredientType { get; set; } 
     }
 }

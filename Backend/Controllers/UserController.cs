@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Backend.Data;
 using Backend.Models;
 using Backend.DTOs;
+using Backend.Services;
 
 namespace Backend.Controllers;
 
@@ -11,7 +12,6 @@ namespace Backend.Controllers;
 public class UserController : ControllerBase
 {
     private readonly ApplicationDbContext _context;
-
     public UserController(ApplicationDbContext context)
     {
         _context = context;
@@ -47,12 +47,15 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<User>> PostUser(User user)
+    public async Task<ActionResult<User>> CreateUser(User user)
     {
         if (user.Gender == GenderType.Male)
             user.ImageUrl = "defaultMan.png";
         else
             user.ImageUrl = "defaultWoman.png";
+
+        user.FirstName = Helper.CapitalizeFirstLetter(user.FirstName);
+        user.LastName = Helper.CapitalizeFirstLetter(user.LastName);
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
@@ -62,16 +65,24 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(int id, UpdateUserDto updateUserDto)
+    public async Task<IActionResult> UpdateUser(int id, UpdateUserDto updateUserDto)
     {
         var user = await _context.Users.FirstOrDefaultAsync(p => p.Id == id);
         if (user == null)
-            //404
+        {
+            //404 
             return NotFound();
+        }
+
+        //Provera po username da li postoji isti username 
         var userUsername = await _context.Users.FirstOrDefaultAsync(p => p.Username == updateUserDto.Username);
         if (userUsername != null)
+        {
+            if (userUsername.Username == user.Username)
+                return BadRequest($"Username {userUsername.Username} is your username!");
             return BadRequest($"User with username {updateUserDto.Username} alrealdy exist, try another!");
-        if (updateUserDto.ImageUrl == "defaultMan.png"||updateUserDto.ImageUrl == "defaultWoman.png")
+        }
+        if (updateUserDto.ImageUrl == "defaultMan.png" || updateUserDto.ImageUrl == "defaultWoman.png")
             user.ImageUrl = user.ImageUrl;
         else
             user.ImageUrl = updateUserDto.ImageUrl;
@@ -100,5 +111,4 @@ public class UserController : ControllerBase
 
         return NoContent();
     }
-
 }
