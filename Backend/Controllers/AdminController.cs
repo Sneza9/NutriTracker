@@ -27,8 +27,8 @@ public class AdminController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Admin>> PostAdmin(Admin admin)
     {
-        admin.FirstName=Helper.CapitalizeFirstLetter(admin.FirstName);
-        admin.LastName=Helper.CapitalizeFirstLetter(admin.LastName);
+        admin.FirstName=Helper.CapitalizeAllFirstLetters(admin.FirstName);
+        admin.LastName=Helper.CapitalizeAllFirstLetters(admin.LastName);
         
         _context.Admins.Add(admin);
         await _context.SaveChangesAsync();

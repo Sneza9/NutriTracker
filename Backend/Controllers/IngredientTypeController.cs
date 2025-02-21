@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Backend.Data;
 using Backend.Models;
 using Backend.Services;
-using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers;
 
@@ -35,6 +34,20 @@ public class IngredientTypeController : ControllerBase
         await _context.SaveChangesAsync();
 
         return CreatedAtAction(nameof(GetIngredientTypeById), new { id = ingredientType.Id }, ingredientType);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> UpdateIngredientType(int id, IngredientType ingredientType)
+    {
+        var ingT = await _context.IngredientTypes.FindAsync(id);
+        if (ingT == null)
+            return NotFound();
+
+        ingT.IngredientTypeName = Helper.CapitalizeFirstLetter(ingredientType.IngredientTypeName);
+        _context.IngredientTypes.Update(ingT);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
     }
 
     [HttpDelete("{id}")]

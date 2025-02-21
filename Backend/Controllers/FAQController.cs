@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Backend.Data;
 using Backend.Models;
 using Backend.DTOs;
@@ -41,14 +40,14 @@ public class FAQController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateFAQ(int id, FrequentlyAskedQuestion f)
+    public async Task<IActionResult> UpdateFAQ(int id, UpdateFaqDto f)
     {
         var faq = await _context.FAQs.FindAsync(id);
 
         if(faq==null)
             return NotFound();
 
-        faq.AnsweredQuestion=f.AskedQuestion;
+        faq.AnsweredQuestion=f.AnsweredQuestion;
         faq.AnsweredQuestion=Helper.CapitalizeFirstLetterAfterPunctuation(faq.AnsweredQuestion);
         _context.FAQs.Update(faq);
         await _context.SaveChangesAsync();

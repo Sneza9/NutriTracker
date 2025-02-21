@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models
 {
@@ -26,6 +27,10 @@ namespace Backend.Models
         [Required]
         public int GI { get; set; } 
         [ForeignKey(nameof(IngredientTypeId))]
-        public IngredientType IngredientType { get; set; } 
+        public IngredientType? IngredientType { get; set; } 
+        [JsonIgnore]
+        public List<MealIngredient> MealIngredients { get; set; } = new List<MealIngredient>();
+        [JsonIgnore]
+        public List<RecipeIngredient> RecipeIngredients { get; set; } = new List<RecipeIngredient>();
     }
 }

@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Backend.Models
 {
@@ -38,6 +39,14 @@ namespace Backend.Models
         public string ImageUrl { get; set; } = string.Empty;
         [Required]
         public bool Premium { get; set; } = false;
+        [JsonIgnore]
+        public List<Recipe> Recipes { get; set; } = new List<Recipe>();
+        [JsonIgnore]
+        public List<Meal> Meals { get; set; } = new List<Meal>();
+        [JsonIgnore]
+        public List<MedicationWorkoutLog> MedicationWorkoutLog { get; set; } = new List<MedicationWorkoutLog>();
+        [JsonIgnore]
+        public List<FavoriteRecipe> FavoriteRecipes { get; set; } = new List<FavoriteRecipe>();
     }
 
     public enum GenderType

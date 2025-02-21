@@ -54,8 +54,8 @@ public class UserController : ControllerBase
         else
             user.ImageUrl = "defaultWoman.png";
 
-        user.FirstName = Helper.CapitalizeFirstLetter(user.FirstName);
-        user.LastName = Helper.CapitalizeFirstLetter(user.LastName);
+        user.FirstName = Helper.CapitalizeAllFirstLetters(user.FirstName);
+        user.LastName = Helper.CapitalizeAllFirstLetters(user.LastName);
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();

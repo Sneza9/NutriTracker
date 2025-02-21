@@ -1,10 +1,11 @@
 using Backend.Data;
+using Backend.DTOs;
 using Backend.Models;
 
 public class UsdaApiService
 {
     private readonly HttpClient _httpClient;
-    private readonly string _apiKey;
+    private readonly string? _apiKey;
     private readonly ApplicationDbContext _context;
 
     public UsdaApiService(HttpClient httpClient, IConfiguration configuration, ApplicationDbContext context)
@@ -22,7 +23,7 @@ public class UsdaApiService
         try
         {
             // Preuzimanje podataka u JSON formatu i deserializacija u konkretan tip
-            var response = await _httpClient.GetFromJsonAsync<FoodResponse>(url);
+            var response = await _httpClient.GetFromJsonAsync<FoodResponseDto>(url);
 
             // Proveravamo da li postoji odgovor i da li ima podataka o hrani
             if (response?.Foods == null || response.Foods.Count == 0)
@@ -32,6 +33,11 @@ public class UsdaApiService
 
             // Preuzimamo prvi element (ako postoji)
             var firstFood = response.Foods[0];
+
+            if (firstFood.Description == null || firstFood.FoodNutrients == null)
+            {
+                return null;
+            }
 
             var ingredient = new IngredientNutritionApi
             {
@@ -52,5 +58,5 @@ public class UsdaApiService
             Console.WriteLine($"Error fetching data from USDA API: {ex.Message}");
             return null;
         }
-    } 
+    }
 }

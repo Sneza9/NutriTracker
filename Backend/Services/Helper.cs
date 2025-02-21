@@ -2,7 +2,7 @@ namespace Backend.Services
 {
     public static class Helper
     {
-        public static string CapitalizeFirstLetter(string text)
+        public static string CapitalizeAllFirstLetters(string text)
         {
             if (string.IsNullOrEmpty(text))
                 return text;
@@ -21,6 +21,17 @@ namespace Backend.Services
 
             // Spajanje reči nazad u tekst
             return string.Join(" ", words);
+        }
+        public static string CapitalizeFirstLetter(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return text;
+
+            // Pretvaramo ceo tekst u mala slova
+            text = text.ToLower();
+
+            // Kapitalizujemo prvo slovo rečenice
+            return char.ToUpper(text[0]) + text.Substring(1);
         }
 
         public static string ToLowerCase(string name)

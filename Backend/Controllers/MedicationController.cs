@@ -29,7 +29,7 @@ public class MedicationController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Medication>> CreateMedication(Medication medication)
     {
-        medication.MedicationName = Helper.CapitalizeFirstLetter(medication.MedicationName);
+        medication.MedicationName = Helper.CapitalizeAllFirstLetters(medication.MedicationName);
 
         _context.Medications.Add(medication);
         await _context.SaveChangesAsync();
@@ -44,7 +44,7 @@ public class MedicationController : ControllerBase
         if (med == null)
             return NotFound();
 
-        med.MedicationName = Helper.CapitalizeFirstLetter(medication.MedicationName);
+        med.MedicationName = Helper.CapitalizeAllFirstLetters(medication.MedicationName);
         _context.Medications.Update(med);
         await _context.SaveChangesAsync();
 

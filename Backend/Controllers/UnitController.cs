@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Backend.Data;
 using Backend.Models;
-using Backend.Services;
+using Backend.DTOs;
 
 namespace Backend.Controllers;
 
@@ -38,14 +38,14 @@ public class UnitController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateUnit(int id, Unit unit)
+    public async Task<IActionResult> UpdateUnit(int id, UpdateUnitDto unitDto)
     {
         var u = await _context.Units.FindAsync(id);
 
         if (u == null)
             return NotFound();
 
-        u.Amount=unit.Amount;
+        u.Amount=unitDto.Amount;
 
         _context.Units.Update(u);
         await _context.SaveChangesAsync();
