@@ -4,6 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Backend.Models
 {
+    //Meso, voce, povrce... 
     public class IngredientType
     {
         [Key]

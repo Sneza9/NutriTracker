@@ -1,9 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Backend.Data;
 using Backend.Models;
-using Backend.Services;
 using Backend.DTOs;
-using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Controllers;
 
@@ -11,84 +8,49 @@ namespace Backend.Controllers;
 [Route("[controller]")]
 public class RecipeController : ControllerBase
 {
-    private readonly ApplicationDbContext _context;
+    private readonly RecipeService _recipeService;
 
-    public RecipeController(ApplicationDbContext context)
+    public RecipeController(RecipeService recipeService)
     {
-        _context = context;
+        _recipeService = recipeService;
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<Recipe>> GetRecipeById(int id)
+    [HttpGet("{recipeId}")]
+    public async Task<ActionResult<Recipe>> GetRecipeById(int recipeId)
     {
-        var recipe = await _context.Recipes.FindAsync(id);
+        var recipe = await _recipeService.GetRecipe(recipeId);
         if (recipe == null)
             return NotFound();
         return recipe;
     }
 
     [HttpPost]
-    public async Task<ActionResult<Recipe>> CreateRecipe(CreateRecipeDto recipeDto)
+    public async Task<ActionResult<Recipe>> CreateRecipe(RecipeDto recipeDto)
     {
+        if (recipeDto == null)
+            return BadRequest("Invalid data.");
         Recipe recipe = new Recipe();
-        recipeDto.Title = Helper.CapitalizeFirstLetter(recipeDto.Title);
-        recipeDto.Description=Helper.CapitalizeFirstLetterAfterPunctuation(recipeDto.Description);
+        recipe = await _recipeService.Create(recipeDto);
 
-        recipe.Title=recipeDto.Title;
-        recipe.Description=recipeDto.Description;
-        recipe.ImageUrl=recipeDto.ImageUrl;
-        recipe.MealType=recipeDto.MealType;
-        recipe.PrepTime=recipeDto.PrepTime;
-        recipe.TotalServings=recipeDto.TotalServings;
-        recipe.TotalKCal=recipeDto.TotalKCal;
-        recipe.TotalCarbohydrate=recipeDto.TotalCarbohydrate;
-        recipe.TotalProtein=recipeDto.TotalProtein;
-        recipe.Rating=recipeDto.Rating;
-        recipe.RecipeUserId=recipeDto.RecipeUserId;
-
-        var user = await _context.Users.FindAsync(recipeDto.RecipeUserId);
-        if(user==null)
-            return NotFound();
-        recipe.User=user;
-
-        _context.Recipes.Add(recipe);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction(nameof(GetRecipeById), new { id = recipe.Id }, recipe);
+        return Ok(recipe);
     }
 
-    //
     [HttpPut]
-    public async Task<IActionResult> UpdateRecipe(int id, UpdateRecipeDto updateRecipe)
+    public async Task<ActionResult<Recipe>> UpdateRecipe(int recipeId)
     {
-        var rec = await _context.Recipes.FirstOrDefaultAsync(p => p.Id == id);
-        if (rec == null)
+        var recipe = await _recipeService.Update(recipeId);
+        
+        if (recipe == null)
+        {
             return NotFound();
-
-        rec.Title=updateRecipe.Title;
-        rec.Description=updateRecipe.Description;
-        rec.MealType=updateRecipe.MealType;
-        rec.PrepTime=updateRecipe.PrepTime;
-        rec.ImageUrl=updateRecipe.ImageUrl;
-
-        rec.Title = Helper.CapitalizeFirstLetter(rec.Title);
-        rec.Description=Helper.CapitalizeFirstLetterAfterPunctuation(rec.Description);
-        _context.Recipes.Update(rec);
-        await _context.SaveChangesAsync();
-
-        return NoContent();
+        }
+        return recipe;
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteRecipe(int id)
+    public async Task<IActionResult> DeleteRecipe(int recipeId)
     {
-        var recipe = await _context.Recipes.FindAsync(id);
-        if (recipe == null)
-            return NotFound();
-
-        _context.Recipes.Remove(recipe);
-        await _context.SaveChangesAsync();
-
+        await _recipeService.Remove(recipeId);
         return NoContent();
     }
 }

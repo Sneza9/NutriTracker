@@ -4,7 +4,7 @@ using Backend.Models;
 
 namespace Backend.DTOs
 {
-    public class CreateRecipeDto
+    public class RecipeDto
     {
         [Required]
         [MinLength(5)]
@@ -21,11 +21,11 @@ namespace Backend.DTOs
         public int PrepTime { get; set; }
         [Required]
         public int TotalServings { get; set; }
-        public int TotalKCal { get; set; }
-        public decimal TotalFat { get; set; } = decimal.Zero;
-        public decimal TotalCarbohydrate { get; set; } = decimal.Zero;
-        public decimal TotalProtein { get; set; } = decimal.Zero;
-        public MealRating Rating { get; set; } = decimal.Zero;
+        // public int TotalKCal { get; set; }
+        // public decimal TotalFat { get; set; } = decimal.Zero;
+        // public decimal TotalCarbohydrate { get; set; } = decimal.Zero;
+        // public decimal TotalProtein { get; set; } = decimal.Zero;
+        // public MealRating Rating { get; set; } = decimal.Zero;
         [Required]
         public int RecipeUserId { get; set; }
     }

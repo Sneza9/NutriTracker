@@ -16,6 +16,9 @@ builder.Services.AddOpenApi();
 
 //Registracija servisa - klase direktno jer imam samo jednu implementaciju UserService-a pa mi ne treba Interface 
 // builder.Services.AddScoped<UsdaApiService>();
+builder.Services.AddScoped<MedicationWorkoutLogService>();
+builder.Services.AddScoped<RecipeIngredientService>();
+builder.Services.AddScoped<RecipeService>();
 
 
 var app = builder.Build();

@@ -12,13 +12,14 @@ namespace Backend.Data
         public DbSet<FrequentlyAskedQuestion> FAQs { get; set; }
         public DbSet<IngredientNutritionApi> IngredientNutritionsApi { get; set; }
         public DbSet<Medication> Medications { get; set; }
-        public DbSet<Unit> Units { get; set; }
         public DbSet<IngredientNutrition> IngredientNutritions { get; set; }
         public DbSet<IngredientType> IngredientTypes { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<Meal> Meals { get; set; } 
         public DbSet<MealIngredient> MealIngredients { get; set; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
         public DbSet<FavoriteRecipe> FavoriteRecipes { get; set; }
+        public DbSet<MedicationWorkoutLog> MedicationWorkoutLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
