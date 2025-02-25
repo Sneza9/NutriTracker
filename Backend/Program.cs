@@ -19,6 +19,8 @@ builder.Services.AddOpenApi();
 builder.Services.AddScoped<MedicationWorkoutLogService>();
 builder.Services.AddScoped<RecipeIngredientService>();
 builder.Services.AddScoped<RecipeService>();
+builder.Services.AddScoped<MealService>();
+builder.Services.AddScoped<MealIngredientService>();
 
 
 var app = builder.Build();

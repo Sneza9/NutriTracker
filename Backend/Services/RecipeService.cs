@@ -29,7 +29,8 @@ public class RecipeService
         recipe.TotalKCal = 0;
         recipe.TotalCarbohydrate = 0;
         recipe.TotalProtein = 0;
-        recipe.Rating = 0;
+        recipe.GlycemicLoadPerServing = 0.0m;
+        recipe.Rating = MealRating.Green;
         recipe.RecipeUserId = recipeDto.RecipeUserId;
 
         var user = await _context.Users.FindAsync(recipeDto.RecipeUserId);
@@ -50,7 +51,7 @@ public class RecipeService
 
     public async Task<Recipe?> Update(int recipeId)
     {
-        var recipe = await _context.Recipes.Where(r=>r.Id==recipeId).Include(r=>r.User).FirstOrDefaultAsync();
+        var recipe = await _context.Recipes.Where(r => r.Id == recipeId).Include(r => r.User).FirstOrDefaultAsync();
         if (recipe == null) return null;
 
         var listOfIngredients = await _recipeIngredientService.GetAllRecipeIngredients(recipeId);
@@ -70,6 +71,8 @@ public class RecipeService
             }
         }
 
+        totalGlycemicLoad /= recipe.TotalServings;
+
         if (totalGlycemicLoad < 10.9m)
         {
             recipe.Rating = MealRating.Green;
@@ -87,6 +90,7 @@ public class RecipeService
         recipe.TotalCarbohydrate = totalCarbohydrate;
         recipe.TotalFat = totalFat;
         recipe.TotalProtein = totalProtein;
+        recipe.GlycemicLoadPerServing = totalGlycemicLoad;
 
         _context.Recipes.Update(recipe);
         await _context.SaveChangesAsync();

@@ -28,6 +28,7 @@ namespace Backend.Models
         public decimal TotalFat { get; set; } = decimal.Zero;
         public decimal TotalCarbohydrate { get; set; } = decimal.Zero;
         public decimal TotalProtein { get; set; } = decimal.Zero;
+        public decimal GlycemicLoadPerServing { get; set; } = decimal.Zero;
         public MealRating Rating { get; set; } = decimal.Zero;
         [Required]
         public int RecipeUserId { get; set; }

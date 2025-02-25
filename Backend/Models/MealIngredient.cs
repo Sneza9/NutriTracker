@@ -9,6 +9,8 @@ namespace Backend.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
+        public int Amount { get; set; }
+        [Required]
         public int MealId { get; set; }
         [Required]
         public int IngredientNutritionId { get; set; }

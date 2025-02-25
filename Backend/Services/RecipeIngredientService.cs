@@ -34,7 +34,7 @@ namespace Backend.Services
         public async Task<IEnumerable<RecipeIngredient>> GetAllRecipeIngredients(int recipeId)
         {
             return await _context.RecipeIngredients
-                        .Where(ri => ri.RecipeId == recipeId) // Ispravljeno: filtriranje po RecipeId
+                        .Where(ri => ri.RecipeId == recipeId) 
                         .Include(ri => ri.IngredientNutrition)
                         .ToListAsync();
         }
